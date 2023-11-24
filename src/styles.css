@@ -1,0 +1,26 @@
+body {
+  /* force the body to be at least the viewport so that the background renders even with few containers */
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+
+  gap: 10px;
+  flex-wrap: wrap;
+
+  /* this will keep the background fixed while we scroll */
+  background-attachment: fixed;
+  background-image: url("disposed-droid.jpg");
+  background-position: 0px 0px;
+  background-repeat: repeat;
+  /* filter: grayscale(100%); */
+}
+
+div.container {
+  min-height: 100px;
+  max-height: 600px;
+  flex: 1 1 auto;
+  align-self: baseline;
+  font-size: 3em;
+  border: 1px solid red;
+}
