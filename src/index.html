@@ -5,7 +5,9 @@
 </head>
 
 <body>
-  <div class="container">weather conditions</div>
+  <div id="weather" class="container">
+    <p>WEATHER</p>
+  </div>
   <div class="container">
     <div id="date">Monday, 01 January 0001</div>
     <div id="time">00:00 CET</div>
@@ -28,40 +30,9 @@
     <br />
     <sup>linux control for nzxt kraken z</sup>
   </div>
-  <script>
-    const timeElem = document.getElementById("time");
-    const timeFormat = new Intl.DateTimeFormat(["en-NL", "nl-NL", "en-US"], {
-      hour: "2-digit",
-      minute: "2-digit",
-      timeZoneName: "short",
-      hour12: false,
-    });
-    const dateFormat = new Intl.DateTimeFormat(["en-NL", "nl-NL", "en-US"], {
-      month: "long",
-      day: "2-digit",
-      year: "numeric",
-      weekday: "long",
-    });
-
-    function updateTime(elem) {
-      elem.innerHTML = timeFormat.format(new Date());
-    }
-    updateTime(timeElem);
-
-    function updateDate() {
-      const date = new Date();
-      console.log(dateFormat.format(date));
-      let elem = document.getElementById("date");
-      elem.textContent = dateFormat.format(date);
-    }
-    updateDate();
-
-    let timeIntervalHandleId = undefined;
-    window.onload = () => {
-      timeIntervalHandleId = setInterval(updateTime(timeElem), 1e3);
-    };
-    window.onunload = () => {
-      window.clearInterval(timeIntervalHandleId);
-    };
-  </script>
+  <footer>
+    Powered by
+    <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a>
+  </footer>
+  <script src="app.js"></script>
 </body>
