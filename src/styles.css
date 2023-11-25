@@ -21,9 +21,9 @@ body {
   min-height: 100px;
   max-height: 600px;
   flex: 1 1 auto;
-  align-self: baseline;
   font-size: 3em;
   border: 1px solid red;
+  overflow-y: scroll;
 }
 
 .component.app-icon {
