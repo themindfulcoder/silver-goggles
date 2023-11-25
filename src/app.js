@@ -3,7 +3,7 @@ const dateElem = document.getElementById("date");
 const weatherElem = document.getElementById("weather");
 
 if (!timeElem || !dateElem || !weatherElem) {
-  window.location = "./error.html";
+  window.location = "/pages/error.html";
 }
 
 const timeFormat = new Intl.DateTimeFormat(["en-NL", "nl-NL", "en-US"], {
@@ -36,10 +36,10 @@ async function updateWeather(elem) {
     "silver-goggles-weatherlocation"
   );
   if (!weatherLocation) {
-    let htmlResponse = await fetch("./weather-location-selector.html");
+    let htmlResponse = await fetch("/components/weather/weather-location-selector.html");
     let htmlText = await htmlResponse.text();
     elem.innerHTML = htmlText;
-    let jsResponse = await fetch("./weather-location-selector.js");
+    let jsResponse = await fetch("/components/weather/weather-location-selector.js");
     let jsText = await jsResponse.text();
     let jsElem = document.createElement("script");
     jsElem[(jsElem.innerText===undefined?"textContent":"innerText")] = jsText;
