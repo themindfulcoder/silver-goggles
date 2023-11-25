@@ -1,0 +1,18 @@
+version: "2.1"
+services:
+  silver-goggles:
+    image: silver-goggles:latest
+    build: ./
+    ports:
+      - 8080:80
+    restart:
+      unless-stopped
+
+  silver-goggles-dev:
+    image: silver-goggles:latest
+    ports:
+      - 8081:80
+    volumes:
+      - ./src/:/usr/local/apache2/htdocs/
+    restart:
+      unless-stopped

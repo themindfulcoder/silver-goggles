@@ -24,3 +24,19 @@ div.container {
   font-size: 3em;
   border: 1px solid red;
 }
+div.container.app-icon {
+  --boxEdge: 128px;
+
+  min-height: var(--boxEdge);
+  max-height: var(--boxEdge);
+  min-width: var(--boxEdge);
+  max-width: var(--boxEdge);
+
+  img {
+    min-height: var(--boxEdge);
+    max-height: var(--boxEdge);
+    min-width: var(--boxEdge);
+    max-width: var(--boxEdge);
+    object-fit: contain;
+  }
+}
