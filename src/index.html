@@ -5,49 +5,54 @@
 </head>
 
 <body>
-  <div class="container app-icon">
-    <a href="https://twitch.tv">
-      <img src="twitch-2.png" />
-    </a>
-  </div>
-  <div class="container app-icon">
-    <a href="https://mail.proton.me">
-      <img src="proton-mail.png" />
-    </a>
+  <div class="container">
+    <div class="component app-icon">
+      <a href="https://twitch.tv">
+        <img src="twitch-2.png" />
+      </a>
+    </div>
+    <div class="component app-icon">
+      <a href="https://mail.proton.me">
+        <img src="proton-mail.png" />
+      </a>
+    </div>
+
+    <div id="weather" class="component">
+      <p>WEATHER</p>
+    </div>
+    <div class="component">
+      <div id="date">Monday, 01 January 0001</div>
+      <div id="time">00:00 CET</div>
+    </div>
+    <div class="component">
+      <h3>this project</h3>
+      <p>
+        <a href="https://github.com/web-tiki/responsive-grid-of-hexagons"
+          >web-tiki/responsive-grid-of-hexagons</a
+        >
+      </p>
+      <sup>want to implement the widgets in hex objects like in this repo</sup>
+    </div>
+    <div class="component">
+      <h3>writing</h3>
+      <a href="https://sorcereroftea.com/">sorcerer of tea</a>
+      <br />
+      <sup>cool website about world building</sup>
+    </div>
+    <div class="component">
+      <h3>linux drivers github repos</h3>
+      <a href="https://github.com/atar-axis/xpadneo">atar-axis/xpadneo</a>
+      <br />
+      <sup>linux driver for xbox one wireless controller</sup>
+      <br />
+      <a href="https://github.com/ProtozeFOSS/KrakenZPlayground"
+        >ProtozeFOSS/KrakenZPlayground</a
+      >
+      <br />
+      <sup>linux control for nzxt kraken z</sup>
+    </div>
   </div>
 
-
-
-  <div id="weather" class="container">
-    <p>WEATHER</p>
-  </div>
-  <div class="container">
-    <div id="date">Monday, 01 January 0001</div>
-    <div id="time">00:00 CET</div>
-  </div>
-  <div class="container">
-    <h3>this project</h3>
-    <p><a href="https://github.com/web-tiki/responsive-grid-of-hexagons">web-tiki/responsive-grid-of-hexagons</a></p>
-    <sup>want to implement the widgets in hex objects like in this repo</sup>
-  </div>
-  <div class="container">
-    <h3>writing</h3>
-    <a href="https://sorcereroftea.com/">sorcerer of tea</a>
-    <br />
-    <sup>cool website about world building</sup>
-  </div>
-  <div class="container">
-    <h3>linux drivers github repos</h3>
-    <a href="https://github.com/atar-axis/xpadneo">atar-axis/xpadneo</a>
-    <br />
-    <sup>linux driver for xbox one wireless controller</sup>
-    <br />
-    <a href="https://github.com/ProtozeFOSS/KrakenZPlayground"
-      >ProtozeFOSS/KrakenZPlayground</a
-    >
-    <br />
-    <sup>linux control for nzxt kraken z</sup>
-  </div>
   <footer>
     Powered by
     <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a>

@@ -1,13 +1,8 @@
 body {
   /* force the body to be at least the viewport so that the background renders even with few containers */
-  width: 100vw;
+  min-width: 100vw;
   min-height: 100vh;
   margin: 0 auto;
-  display: flex;
-
-  gap: 10px;
-  flex-wrap: wrap;
-
   /* this will keep the background fixed while we scroll */
   background-attachment: fixed;
   background-image: url("disposed-droid.jpg");
@@ -16,7 +11,13 @@ body {
   /* filter: grayscale(100%); */
 }
 
-div.container {
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.component {
   min-height: 100px;
   max-height: 600px;
   flex: 1 1 auto;
@@ -24,7 +25,8 @@ div.container {
   font-size: 3em;
   border: 1px solid red;
 }
-div.container.app-icon {
+
+.component.app-icon {
   --boxEdge: 128px;
 
   min-height: var(--boxEdge);
@@ -39,4 +41,9 @@ div.container.app-icon {
     max-width: var(--boxEdge);
     object-fit: contain;
   }
+}
+
+footer {
+  position: sticky;
+  bottom: 0px;
 }
