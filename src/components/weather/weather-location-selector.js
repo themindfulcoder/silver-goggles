@@ -3,7 +3,7 @@ function saveWeatherLocationSelector(val) {
 }
 
 let weatherLocationSelectorElement = document.getElementById(
-  "weather-location-selector"
+  "weather-location-selector-input"
 );
 
 weatherLocationSelectorElement.onblur = (ev) => {

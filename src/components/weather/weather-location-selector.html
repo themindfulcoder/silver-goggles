@@ -1,3 +1,11 @@
-<h3>Weather widget</h3>
-<label label-for="weather-location-selector">Which city?</label>
-<input type="text" id="weather-location-selector" />
+<div class="weather weather-wrapper">
+  <h3>Weather widget</h3>
+  <div class="weather weather-selector-wrapper">
+    <label label-for="weather-location-selector">Which city?</label>
+    <input id="weather-location-selector-input" type="text" />
+    <button id="weather-location-selector-save" type="button">Save</button>
+  </div>
+  <div class="weather weather-details-wrapper">
+    <span class="temp"></span><span class="icon"></span>
+  </div>
+</div>
