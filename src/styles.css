@@ -26,24 +26,6 @@ body {
   overflow-y: scroll;
 }
 
-.component.app-icon {
-  /* we want app icons to be consistently sized */
-  --boxEdge: 128px;
-
-  min-height: var(--boxEdge);
-  max-height: var(--boxEdge);
-  min-width: var(--boxEdge);
-  max-width: var(--boxEdge);
-
-  img {
-    min-height: var(--boxEdge);
-    max-height: var(--boxEdge);
-    min-width: var(--boxEdge);
-    max-width: var(--boxEdge);
-    object-fit: contain;
-  }
-}
-
 /* let the footer be link backs to open source projects used for inspiration */
 footer {
   position: sticky;
