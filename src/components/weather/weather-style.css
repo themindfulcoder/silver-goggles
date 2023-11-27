@@ -1,0 +1,17 @@
+* {
+  background-color: pink;
+  color: black;
+}
+
+img {
+  --boxEdge: 128px;
+  margin: 0px;
+  padding: 0px;
+  height: var(--boxEdge);
+  width: var(--boxEdge);
+  min-height: var(--boxEdge);
+  max-height: var(--boxEdge);
+  min-width: var(--boxEdge);
+  max-width: var(--boxEdge);
+  display: inline-block;
+}
