@@ -3,9 +3,12 @@ Todo:
   ☐ Fix background not staying in place when scrolling on ipad
   ✔ add icon-link web component @done(23-11-26 02:21)
   ☐ Add weather web component
-    ☐ add simple weather location selector
+    ✔ add simple weather location selector @done(23-11-28 20:14)
     ✔ add simple ui with dummy ui and temp @done(23-11-27 21:47)
-    ☐ add service to weather api
+    ✔ add simple weather api storage @done(23-11-28 20:14)
+    ✔ add weather api service @done(23-11-28 20:41)
+    ☐ move configuration behind a [cog / menu] button using a modal or something
+    ☐ show a skeleton preview when no configuration supplied
   ☐ fix flex container size; too wide for icons
   ☐ link container web component
   ☐ checkbox container web component
