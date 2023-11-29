@@ -7,6 +7,8 @@ Todo:
     ✔ add simple ui with dummy ui and temp @done(23-11-27 21:47)
     ✔ add simple weather api storage @done(23-11-28 20:14)
     ✔ add weather api service @done(23-11-28 20:41)
+    ☐ inputs need some validation
+    ☐ hide weather view by default
     ☐ move configuration behind a [cog / menu] button using a modal or something
     ☐ show a skeleton preview when no configuration supplied
   ☐ fix flex container size; too wide for icons
