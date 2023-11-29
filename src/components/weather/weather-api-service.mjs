@@ -15,14 +15,19 @@ const weatherApiService = {
       return undefined;
     }
 
-    const result = await fetch(
-      `http://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${weatherLocation}`
+    const apiResponse = await fetch(
+      `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${weatherLocation}`
     );
-    return {
-      temp: result.temp_c,
-      condition: result["condition:text"],
-      feelslike: result.feelslike_c,
+    const apiResponseJson = await apiResponse.json();
+
+    const result = {
+      temp: apiResponseJson.current.temp_c,
+      condition: apiResponseJson.current.condition.text,
+      feelslike: apiResponseJson.current.feelslike_c,
+      iconUrl: `https:${apiResponseJson.current.condition.icon}`,
     };
+
+    return result;
   },
 };
 

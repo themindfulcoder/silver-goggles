@@ -8,7 +8,6 @@ const setupWeatherLocation = function (shadowRoot) {
   const saveWeatherLocation = function (val) {
     localStorage.setItem("silver-goggles-weatherlocation", val);
   };
-
   const hideWeatherLocationWrapper = function () {
     weatherLocationWrapper.style.display = "none";
   };
@@ -51,7 +50,6 @@ const setupWeatherApiKey = function (shadowRoot) {
   const saveWeatherApiKey = function (val) {
     localStorage.setItem("silver-goggles-weatherapikey", val);
   };
-
   const hideWeatherApiKeyWrapper = function () {
     weatherApiKeyWrapper.style.display = "none";
   };
@@ -112,7 +110,8 @@ class WeatherComponent extends HTMLElement {
         /* handle icon */
         const iconElement = shadowRoot.getElementById("icon");
         const iconImgElement = document.createElement("img");
-        iconImgElement.src = `/images/weather-${apiResponse.condition}.png`;
+        // iconImgElement.src = `/images/weather-${apiResponse.condition}.png`;
+        iconImgElement.src = apiResponse.iconUrl;
         iconElement.replaceChildren(iconImgElement);
 
         // TODO: 5min timer or something to update weather conditions
