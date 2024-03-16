@@ -1,1 +1,6 @@
+# environment configuration
 .env
+
+# ide configuration
+## idea
+.idea/
