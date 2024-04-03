@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard - Arcturu</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  <link href="./archive/images/hexagon-vector.png" rel="shortcut icon">
+  <link rel="manifest" href="manifest.json" />
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet">
+  <script crossorigin="anonymous"
           integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+          src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script crossorigin="anonymous"
           integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-          crossorigin="anonymous"></script>
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
   <link href="./fonts.css" rel="stylesheet">
@@ -25,44 +27,47 @@
     }
 
     .fs-256 {
-      font-size: 10rem;
+      font-size: 10em;
     }
   </style>
 </head>
 <body>
 <nav class="navbar fixed-top bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" onclick="reset()">Arcturu</a>
+    <a class="navbar-brand" onclick="reset()">
+      <img alt="Tony Robins" class="d-inline-block align-bottom" height="32" src="./archive/images/hexagon-vector.png"
+           width="32"/>
+      Arcturus
+    </a>
   </div>
 </nav>
-<div class="container-fluid" style="margin-top: 64px;" data-page-id="cards">
-  <div class="row">
-    <div class="col card" style="width: 18rem;">
-      <img src="./archive/images/vector-clock-icon.jpg" onclick="pages.time.openPage()" class="card-img-top pe-auto"
-           alt="mail">
-      <div class="card-body">
-        <h5 class="card-title">Time</h5>
-        <p class="card-text">Keep an eye on the time.</p>
-        <a onclick="pages.time.openPage()" class="btn btn-primary">Tick toc.</a>
-      </div>
+<div class="container-fluid d-flex" data-page-id="cards" style="margin-top: 64px;">
+  <div class="card" style="width: 18rem;">
+    <img alt="mail" class="card-img-top pe-auto" onclick="pages.time.openPage()"
+         src="./archive/images/vector-clock-icon.jpg">
+    <div class="card-body">
+      <h5 class="card-title">Time</h5>
+      <p class="card-text">Keep an eye on the time.</p>
+      <a class="btn btn-primary" onclick="pages.time.openPage()">Tick toc.</a>
     </div>
-    <div class="col card" style="width: 18rem;">
-      <a href="#"><img src="./archive/images/proton-mail.png" class="card-img-top" alt="mail">
-      </a>
-      <div class="card-body">
-        <h5 class="card-title">Proton Mail</h5>
-        <p class="card-text">Do you like spam? Do you like marketing? Do you like important shit? Do you like
-          receipts?.</p>
-        <a href="#" class="btn btn-primary">To hell...</a>
-      </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <a href="#"><img alt="mail" class="card-img-top" src="./archive/images/proton-mail.png">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">Proton Mail</h5>
+      <p class="card-text">Do you like spam? Do you like marketing? Do you like important shit? Do you like
+        receipts?.</p>
+      <a class="btn btn-primary" href="#">To hell...</a>
     </div>
   </div>
 </div>
+</div>
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center h-100 mh-100vh"
      data-page-id="time">
-  <h1 id="time.displayText" class="display-1 fs-256 space-mono-bold"></h1>
-  <p id="time.weatherText" class="space-mono-bold"></p>
-  <img id="time.weatherIcon" src="./favicon.ico" alt="the weather as an icon image"/>
+  <h1 class="display-1 fs-256 space-mono-bold" id="time.displayText"></h1>
+  <p class="space-mono-bold" id="time.weatherText"></p>
+  <img alt="the weather as an icon image" id="time.weatherIcon" src=""/>
 </div>
 </body>
 </html>

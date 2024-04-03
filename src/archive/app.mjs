@@ -1,2 +1,3 @@
-import { registerComponents } from "./components/components.mjs";
+import {registerComponents} from "./components/components.mjs";
+
 registerComponents();

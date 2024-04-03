@@ -11,7 +11,7 @@ const weatherApiService = {
       !weatherApiKey ||
       weatherApiKey === ""
     ) {
-      return { temp: "21", condition: "sunny" }; // TODO: temp return value
+      return {temp: "21", condition: "sunny"}; // TODO: temp return value
       return undefined;
     }
 
@@ -31,4 +31,4 @@ const weatherApiService = {
   },
 };
 
-export { weatherApiService };
+export {weatherApiService};

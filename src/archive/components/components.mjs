@@ -1,6 +1,6 @@
-import { DateTimeComponent } from "./datetime/datetime-component.mjs";
-import { IconLinkComponent } from "./icon-link/icon-link-component.mjs";
-import { WeatherComponent } from "./weather/weather-component.mjs";
+import {DateTimeComponent} from "./datetime/datetime-component.mjs";
+import {IconLinkComponent} from "./icon-link/icon-link-component.mjs";
+import {WeatherComponent} from "./weather/weather-component.mjs";
 
 const handleError = function (componentName, response) {
   if (!response.ok) {
@@ -41,4 +41,4 @@ const registerComponents = async function () {
   window.customElements.define("weather-component", WeatherComponent);
 };
 
-export { setupTemplate, registerComponents };
+export {setupTemplate, registerComponents};

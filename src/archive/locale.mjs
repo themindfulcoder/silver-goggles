@@ -20,4 +20,4 @@ const locale = Object.freeze({
   }),
 });
 
-export { locale };
+export {locale};

@@ -1,5 +1,5 @@
-import { locale } from "../../locale.mjs";
-import { setupTemplate } from "../components.mjs";
+import {locale} from "../../locale.mjs";
+import {setupTemplate} from "../components.mjs";
 
 class DateTimeComponent extends HTMLElement {
   constructor() {
@@ -10,7 +10,7 @@ class DateTimeComponent extends HTMLElement {
   connectedCallback() {
     console.log("date-time-component connectedCallback");
     const url = new URL(import.meta.url);
-    const shadowRoot = this.attachShadow({ mode: "closed" });
+    const shadowRoot = this.attachShadow({mode: "closed"});
     setupTemplate(url, shadowRoot).then(() => {
       /* handle date */
       const dateElement = shadowRoot.getElementById("date");
@@ -31,4 +31,4 @@ class DateTimeComponent extends HTMLElement {
   }
 }
 
-export { DateTimeComponent };
+export {DateTimeComponent};

@@ -1,5 +1,5 @@
-import { setupTemplate } from "../components.mjs";
-import { weatherApiService } from "./weather-api-service.mjs";
+import {setupTemplate} from "../components.mjs";
+import {weatherApiService} from "./weather-api-service.mjs";
 
 const setupWeatherLocation = function (shadowRoot) {
   const getWeatherLocation = function () {
@@ -94,7 +94,7 @@ class WeatherComponent extends HTMLElement {
   connectedCallback() {
     console.log("weather-component connectedCallback");
     const url = new URL(import.meta.url);
-    const shadowRoot = this.attachShadow({ mode: "closed" });
+    const shadowRoot = this.attachShadow({mode: "closed"});
     setupTemplate(url, shadowRoot).then(() => {
       /**
        * WEATHER LOCATION
@@ -124,4 +124,4 @@ class WeatherComponent extends HTMLElement {
   }
 }
 
-export { WeatherComponent };
+export {WeatherComponent};

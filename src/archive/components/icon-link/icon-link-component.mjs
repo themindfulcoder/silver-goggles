@@ -1,4 +1,4 @@
-import { setupTemplate } from "../components.mjs";
+import {setupTemplate} from "../components.mjs";
 
 class IconLinkComponent extends HTMLElement {
   constructor() {
@@ -8,7 +8,7 @@ class IconLinkComponent extends HTMLElement {
 
   connectedCallback() {
     const url = new URL(import.meta.url);
-    const shadowRoot = this.attachShadow({ mode: "closed" });
+    const shadowRoot = this.attachShadow({mode: "closed"});
     setupTemplate(url, shadowRoot).then(() => {
       // Insert link
       let linkUrl;
@@ -32,4 +32,4 @@ class IconLinkComponent extends HTMLElement {
   }
 }
 
-export { IconLinkComponent };
+export {IconLinkComponent};

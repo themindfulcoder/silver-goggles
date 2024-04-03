@@ -11,7 +11,7 @@ const TimeModule = function () {
       document.getElementById('time.weatherIcon').src = url;
     }
 
-    const key = sessionStorage.getItem('weatherapikey')
+    const key = localStorage.getItem('weatherapikey')
     if (!key) {
       updateTextElement("The void is how it be. Feels like 8 instead of 10.");
       return;
@@ -88,6 +88,11 @@ const page = function (id, pages) {
     console.trace(`start closing "${obj.id}" page`);
     const container = getPageContainer(obj.id);
     container.classList.add('d-none');
+    console.trace(`checking if onClosePage exists on "${obj.id}" page`);
+    if (obj.onClosePage) {
+      console.trace(`calling onClosePage on "${obj.id}" page`);
+      obj.onClosePage();
+    }
     console.trace(`done closing "${obj.id}" page`);
   }
   return obj;
