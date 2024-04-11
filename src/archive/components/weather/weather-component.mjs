@@ -1,5 +1,5 @@
-import {setupTemplate} from "../components.mjs";
 import {weatherApiService} from "./weather-api-service.mjs";
+import * as components from "../components.mjs";
 
 const setupWeatherLocation = function (shadowRoot) {
   const getWeatherLocation = function () {
@@ -34,7 +34,7 @@ const setupWeatherLocation = function (shadowRoot) {
   };
 
   weatherLocationInputElement.onkeyup = (ev) => {
-    if (ev.key != "Enter") {
+    if (ev.key !== "Enter") {
       return;
     }
     var value = ev.target.value;
@@ -76,7 +76,7 @@ const setupWeatherApiKey = function (shadowRoot) {
   };
 
   weatherApiKeyInputElement.onkeyup = (ev) => {
-    if (ev.key != "Enter") {
+    if (ev.key !== "Enter") {
       return;
     }
     var value = ev.target.value;
@@ -95,7 +95,7 @@ class WeatherComponent extends HTMLElement {
     console.log("weather-component connectedCallback");
     const url = new URL(import.meta.url);
     const shadowRoot = this.attachShadow({mode: "closed"});
-    setupTemplate(url, shadowRoot).then(() => {
+    components.setupTemplate(url, shadowRoot).then(() => {
       /**
        * WEATHER LOCATION
        */

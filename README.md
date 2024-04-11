@@ -10,4 +10,4 @@ docker build -t silver-goggles-image .
 
 ## run
 
-docker run -dit --name silver-goggles-container -p 8080:80 silver-goggles-image
+docker run -d --name silver-goggles-container -p 8080:80 silver-goggles-image

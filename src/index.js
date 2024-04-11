@@ -41,8 +41,10 @@ const TimeModule = function () {
     obj.updateWeather();
 
     // setup schedules
-    obj.updateTimeIntervalId = setInterval(obj.updateTime, 1000);
-    obj.updateWeatherIntervalId = setInterval(obj.updateWeather, 1000 * 60 * 30);
+    const oneSecond = 1000;
+    const thirtyMinutes = 1000 * 60 * 30;
+    obj.updateTimeIntervalId = setInterval(obj.updateTime, oneSecond);
+    obj.updateWeatherIntervalId = setInterval(obj.updateWeather, thirtyMinutes);
   }
   obj.stop = function () {
     clearInterval(obj.updateTimeIntervalId);
@@ -99,6 +101,7 @@ const page = function (id, pages) {
 }
 const pages = {};
 pages['cards'] = page('cards', pages);
+
 pages['time'] = page('time', pages);
 pages['time'].onOpenPage = timeModule.start;
 pages['time'].onClosePage = timeModule.stop;
