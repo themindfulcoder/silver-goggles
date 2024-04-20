@@ -110,6 +110,10 @@ const page = function (id, pages) {
   const obj = {};
   obj.id = id;
   obj.pages = pages;
+  if (module) {
+    obj.onOpenPage = module.init;
+    obj.onClosePage = module.dispose;
+  }
   obj.openPage = function () {
     console.trace(`start opening "${obj.id}" page`);
     // Close all the pages.
@@ -140,10 +144,7 @@ const page = function (id, pages) {
 }
 const pages = {};
 pages['cards'] = page('cards', pages);
-
-pages['time'] = page('time', pages);
-pages['time'].onOpenPage = timeModule.start;
-pages['time'].onClosePage = timeModule.stop;
+pages['time'] = page('time', pages, timeModule);
 
 function reset() {
   pages.cards.openPage();
