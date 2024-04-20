@@ -1,4 +1,25 @@
-const TimeModule = function () {
+const RandomQuoteService = function () {
+  const obj = {};
+  const path = "https://gist.githubusercontent.com/themindfulcoder/03d2ccbfde890178d8daac17d049a279/raw/cd81b151b08ae396885d5d30aaf4d0d0b1b10f2e/craftmanship.json";
+  fetch(path)
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      obj.items = json;
+    });
+  obj.items = [];
+  obj.currentIndex = 0;
+  obj.currentItem = {};
+  obj.getRandomQuote = function () {
+    obj.currentIndex = Math.floor(Math.random() * obj.items.length);
+    obj.currentItem = obj.items[obj.currentIndex];
+    return obj.currentItem;
+  };
+  return obj;
+}
+
+const TimeModule = function (randomQuoteService) {
   const obj = {};
   obj.updateTime = function () {
     document.getElementById('time.displayText').textContent = new Date().toLocaleTimeString('en-NL', {hour12: false});
@@ -33,26 +54,44 @@ const TimeModule = function () {
         console.error('Aww shit... here we go again: ', error);
       })
   };
+  obj.updateQuote = function () {
+    const updateTitleElement = function (text) {
+      document.getElementById('time.quote.title').textContent = text;
+    };
+    const updateSubtitleElement = function (text) {
+      document.getElementById('time.quote.subtitle').textContent = text;
+    };
+
+    const item = randomQuoteService.getRandomQuote();
+    updateTitleElement(item.title);
+    updateSubtitleElement(item.subtitle);
+  };
   obj.updateTimeIntervalId = 0;
   obj.updateWeatherIntervalId = 0;
+  obj.updateQuoteIntervalId = 0;
   obj.start = function () {
     // update the view
     obj.updateTime();
     obj.updateWeather();
+    obj.updateQuote();
 
     // setup schedules
     const oneSecond = 1000;
+    const fiveMinutes = 1000 * 60 * 5;
     const thirtyMinutes = 1000 * 60 * 30;
     obj.updateTimeIntervalId = setInterval(obj.updateTime, oneSecond);
     obj.updateWeatherIntervalId = setInterval(obj.updateWeather, thirtyMinutes);
+    obj.updateQuoteIntervalId = setInterval(obj.updateQuote, fiveMinutes);
   }
   obj.stop = function () {
     clearInterval(obj.updateTimeIntervalId);
     clearInterval(obj.updateWeatherIntervalId);
+    clearInterval(obj.updateQuoteIntervalId);
   }
   return obj;
 }
-const timeModule = TimeModule();
+const randomQuoteService = RandomQuoteService();
+const timeModule = TimeModule(randomQuoteService);
 
 const page = function (id, pages) {
   const getPageContainer = function (id) {

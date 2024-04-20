@@ -37,6 +37,9 @@
     .fs-256 {
       font-size: 10em;
     }
+    div[data-page-id="time"] {
+      margin-top: 64px;
+    }
   </style>
 </head>
 <body>
@@ -84,16 +87,26 @@
     </div>
   </div>
 </div>
-<div class="container-fluid d-flex flex-column justify-content-center align-items-center h-100 mh-100vh"
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center "
      data-page-id="time">
   <h1 class="display-1 fs-256 space-mono-bold"
       id="time.displayText"></h1>
-  <p class="space-mono-bold"
-     id="time.weatherText"></p>
-  <img alt="the weather as an icon image"
-       id="time.weatherIcon"
-       src=""/>
-  <a href="https://developer.mozilla.org/en-US/">MDN is life.</a>
+  <div class="container d-flex flex-row h-100">
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+      <p class="space-mono-bold"
+         id="time.weatherText"></p>
+      <img alt="the weather as an icon image"
+           id="time.weatherIcon"
+           src=""/>
+    </div>
+    <div class="container d-flex flex-column">
+      <p id="time.quote.title"
+         class="space-mono-bold"></p>
+      <p id="time.quote.subtitle"
+         class="space-mono-bold"></p>
+    </div>
+  </div>
+  <!--  <a href="https://developer.mozilla.org/en-US/">MDN is life.</a>-->
 </div>
 <script>pages.time.closePage();</script>
 </body>
