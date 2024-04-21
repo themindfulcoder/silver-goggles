@@ -1,4 +1,4 @@
-const RandomQuoteService = function () {
+const QuoteService = function () {
   const obj = {};
   const path = "https://gist.githubusercontent.com/themindfulcoder/03d2ccbfde890178d8daac17d049a279/raw/cd81b151b08ae396885d5d30aaf4d0d0b1b10f2e/craftmanship.json";
   fetch(path)
@@ -11,7 +11,7 @@ const RandomQuoteService = function () {
   obj.items = [];
   obj.currentIndex = 0;
   obj.currentItem = {};
-  obj.getRandomQuote = function () {
+  obj.getNextQuote = function () {
     obj.currentIndex = Math.floor(Math.random() * obj.items.length);
     obj.currentItem = obj.items[obj.currentIndex];
     return obj.currentItem;
@@ -19,7 +19,44 @@ const RandomQuoteService = function () {
   return obj;
 }
 
-const TimeModule = function (randomQuoteService) {
+
+const WeatherService = function () {
+  const key = localStorage.getItem('weatherapikey')
+  const url = `https://api.weatherapi.com/v1/current.json?q=Wormerveer%2C%20Noord-Holland&key=${key}`
+  const DefaultWeatherResult = function () {
+    return WeatherResult("The void", "/favicon.ico", "-999", "999");
+  }
+  const WeatherResult = function (conditionText, conditionIcon, tempc, feelslikec) {
+    const obj = {
+      conditionIcon: conditionIcon, conditionText: conditionText, temp_c: tempc, feelslike_c: feelslikec
+    };
+    return obj;
+  }
+
+  const obj = {};
+  obj.getWeather = function () {
+    if (!key) {
+      return Promise.resolve(DefaultWeatherResult());
+    }
+    return fetch(url)
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error('api request issue');
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        return WeatherResult(data.current.condition.text, 'https:' + data.current.condition.icon, data.current.temp_c, data.current.feelslike_c);
+      })
+      .catch(error => {
+        console.error('Aww shit... here we go again: ', error);
+        return Promise.resolve(DefaultWeatherResult());
+      })
+  };
+  return obj;
+}
+
+const TimeModule = function (quoteService, weatherService) {
   const obj = {};
   obj.updateTime = function () {
     document.getElementById('time.displayText').textContent = new Date().toLocaleTimeString('en-NL', {hour12: false});
@@ -32,27 +69,11 @@ const TimeModule = function (randomQuoteService) {
       document.getElementById('time.weatherIcon').src = url;
     }
 
-    const key = localStorage.getItem('weatherapikey')
-    if (!key) {
-      updateTextElement("The void is how it be. Feels like 8 instead of 10.");
-      return;
-    }
-    const url = `https://api.weatherapi.com/v1/current.json?q=Wormerveer%2C%20Noord-Holland&key=${key}`
-    fetch(url)
-      .then((resp) => {
-        if (!resp.ok) {
-          throw new Error('api request issue');
-
-        }
-        return resp.json();
-      })
-      .then((data) => {
-        updateTextElement(`${data.current.condition.text} is how it be. Feels like ${data.current.temp_c} instead of ${data.current.feelslike_c}`);
-        updateIconElement('https:' + data.current.condition.icon);
-      })
-      .catch(error => {
-        console.error('Aww shit... here we go again: ', error);
-      })
+    const weatherPromise = weatherService.getWeather();
+    weatherPromise.then((weather) => {
+      updateTextElement(`${weather.conditionText} is how it be. Feels like ${weather.feelslike_c} instead of ${weather.temp_c}`);
+      updateIconElement(weather.conditionIcon);
+    });
   };
   obj.updateQuote = function () {
     const updateTitleElement = function (text) {
@@ -62,14 +83,14 @@ const TimeModule = function (randomQuoteService) {
       document.getElementById('time.quote.subtitle').textContent = text;
     };
 
-    const item = randomQuoteService.getRandomQuote();
+    const item = quoteService.getNextQuote();
     updateTitleElement(item.title);
     updateSubtitleElement(item.subtitle);
   };
   obj.updateTimeIntervalId = 0;
   obj.updateWeatherIntervalId = 0;
   obj.updateQuoteIntervalId = 0;
-  obj.start = function () {
+  obj.init = function () {
     // update the view
     obj.updateTime();
     obj.updateWeather();
@@ -83,17 +104,18 @@ const TimeModule = function (randomQuoteService) {
     obj.updateWeatherIntervalId = setInterval(obj.updateWeather, thirtyMinutes);
     obj.updateQuoteIntervalId = setInterval(obj.updateQuote, fiveMinutes);
   }
-  obj.stop = function () {
+  obj.dispose = function () {
     clearInterval(obj.updateTimeIntervalId);
     clearInterval(obj.updateWeatherIntervalId);
     clearInterval(obj.updateQuoteIntervalId);
   }
   return obj;
 }
-const randomQuoteService = RandomQuoteService();
-const timeModule = TimeModule(randomQuoteService);
+const quoteService = QuoteService();
+const weatherService = WeatherService();
+const timeModule = TimeModule(quoteService, weatherService);
 
-const page = function (id, pages) {
+const page = function (id, pages, module) {
   const getPageContainer = function (id) {
     const containers = Array.from(document.getElementsByClassName('container-fluid'));
     const filteredContainers = containers.filter((value) => {
