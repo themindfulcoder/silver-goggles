@@ -27,18 +27,17 @@ const WeatherService = function () {
     return WeatherResult("The void", "/favicon.ico", "-999", "999");
   }
   const WeatherResult = function (conditionText, conditionIcon, tempc, feelslikec) {
-    const obj = {
+    return {
       conditionIcon: conditionIcon, conditionText: conditionText, temp_c: tempc, feelslike_c: feelslikec
     };
-    return obj;
   }
 
   const obj = {};
-  obj.getWeather = function () {
+  obj.getWeatherAsync = async function () {
     if (!key) {
-      return Promise.resolve(DefaultWeatherResult());
+      return DefaultWeatherResult();
     }
-    return fetch(url)
+    return await fetch(url)
       .then((resp) => {
         if (!resp.ok) {
           throw new Error('api request issue');
@@ -50,7 +49,7 @@ const WeatherService = function () {
       })
       .catch(error => {
         console.error('Aww shit... here we go again: ', error);
-        return Promise.resolve(DefaultWeatherResult());
+        return DefaultWeatherResult();
       })
   };
   return obj;
@@ -69,11 +68,12 @@ const TimeModule = function (quoteService, weatherService) {
       document.getElementById('time.weatherIcon').src = url;
     }
 
-    const weatherPromise = weatherService.getWeather();
-    weatherPromise.then((weather) => {
-      updateTextElement(`${weather.conditionText} is how it be. Feels like ${weather.feelslike_c} instead of ${weather.temp_c}`);
-      updateIconElement(weather.conditionIcon);
-    });
+    weatherService
+      .getWeatherAsync()
+      .then((weather) => {
+        updateTextElement(`${weather.conditionText} is how it be. Feels like ${weather.feelslike_c} instead of ${weather.temp_c}`);
+        updateIconElement(weather.conditionIcon);
+      });
   };
   obj.updateQuote = function () {
     const updateTitleElement = function (text) {
