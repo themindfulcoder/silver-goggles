@@ -71,7 +71,11 @@ const TimeModule = function (quoteService, weatherService) {
     weatherService
       .getWeatherAsync()
       .then((weather) => {
-        updateTextElement(`${weather.conditionText} is how it be. Feels like ${weather.feelslike_c} instead of ${weather.temp_c}`);
+        const unitOfMeasurement = '\u{00B0}C';
+        const condition = `${weather.conditionText}`;
+        const tempFeel = `${weather.feelslike_c}${unitOfMeasurement}`;
+        const tempReal = `${weather.temp_c}${unitOfMeasurement}`;
+        updateTextElement(`${condition} is how it be. Feels like ${tempFeel} instead of ${tempReal}.`);
         updateIconElement(weather.conditionIcon);
       });
   };
